@@ -172,13 +172,11 @@ public class AGLV2 {
         clearConsole();
         
         if (doLearning) {
-            System.out.print("Welcome... you will be shown sequences...");
-        } else {
-            System.out.print("Welcome back. You will now complete the second part of the experiment...");
+            System.out.print("Welcome! In this first part of the experiment, please attend to the screen");
+            scanner.nextLine();
+            clearConsole();
         }
         
-        scanner.nextLine();
-        clearConsole();
         
         System.out.println("Press Enter to begin...");
         scanner.nextLine(); // wait for Enter key
