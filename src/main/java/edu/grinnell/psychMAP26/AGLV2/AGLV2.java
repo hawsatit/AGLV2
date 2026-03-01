@@ -188,9 +188,6 @@ public class AGLV2 {
         int xStart = 675;
         int y = 200;
 
-        SymbolWindow window = new SymbolWindow();
-        Graphics g = window.getDrawGraphics();
-        window.bringToFront();
 
 
         SymbolLoader loader = new SymbolLoader(group);
@@ -198,11 +195,12 @@ public class AGLV2 {
         //doubles the sentences (50 * 2) of the same
         //generator.add(loader);
         
-        
-        //learning phase
         int count = 0;
-        
         if (doLearning){
+            
+            SymbolWindow window = new SymbolWindow();
+            Graphics g = window.getDrawGraphics();
+            window.bringToFront();
             //1 sec pause at the start
             Thread.sleep(1000);
 
@@ -297,6 +295,7 @@ public class AGLV2 {
         int count2 = 0;
         //whie the test queue has information and q is not pressed
         while (generator.hasNextTest() && running && count2 < 3) {
+            
             count2++;
                         
             //retrieve the pair of list of LabeledSentence and list of sentences as images
@@ -312,11 +311,10 @@ public class AGLV2 {
                 continue;
             }
             
-            //make the new panel for the test
-            window = new SymbolWindow();
-            g = window.getDrawGraphics();
+            SymbolWindow window = new SymbolWindow(); 
+            Graphics g = window.getDrawGraphics();
             window.bringToFront();
-            
+                        
             //1sec pause at the start
             Thread.sleep(1000);
             
@@ -363,7 +361,7 @@ public class AGLV2 {
 "Please notify the experimenter!");
         scanner.nextLine();
         clearConsole();
-        System.out.println("Test phase completed. Results saved to 'participant_" + participantNumber + ".csv'");
+        System.out.println("Test phase completed. Results saved to 'results/participant_" + participantNumber + "_day" + day + ".csv'");
         System.out.println("Learning Sentences: " + count + " " + "Test Questions: " + count2 + '\n');
 
         System.exit(0);
