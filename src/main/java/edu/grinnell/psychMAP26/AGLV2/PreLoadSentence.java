@@ -17,7 +17,8 @@ public class PreLoadSentence {
     List<List<SymbolPair>> sentences = new ArrayList<>();
 
     //for the test phase
-    List<List<LabeledSentence>> testSentences = new ArrayList<>();
+    List<List<LabeledSentence>> testSentences1 = new ArrayList<>();
+    List<List<LabeledSentence>> testSentences2 = new ArrayList<>();
     
     //load the sentences into the list
     public PreLoadSentence() {
@@ -90,99 +91,99 @@ public class PreLoadSentence {
         sentences.add(List.of(new SymbolPair("A", 3), new SymbolPair("C", 1), new SymbolPair("F", 3), new SymbolPair("C", 3), new SymbolPair("G", 0))); // rud lum vot sig tiz
 
         // Test sentences (correct and incorrect grouped together)
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 0), new SymbolPair("D", 0), new SymbolPair("C", 3), new SymbolPair("G", 1), new SymbolPair("F", 2)), 1, 1),
                 new LabeledSentence(List.of(new SymbolPair("C", 3), new SymbolPair("G", 1), new SymbolPair("F", 2)), 0, 1)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("C", 1), new SymbolPair("G", 0), new SymbolPair("F", 0)), 0, 1),
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 1), new SymbolPair("C", 1), new SymbolPair("G", 0), new SymbolPair("F", 0)), 1, 1)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("D", 0), new SymbolPair("C", 0), new SymbolPair("G", 0), new SymbolPair("F", 3)), 1, 1),
                 new LabeledSentence(List.of(new SymbolPair("C", 0), new SymbolPair("G", 0), new SymbolPair("F", 3)), 0, 1)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("C", 2), new SymbolPair("G", 1), new SymbolPair("F", 1)), 0, 1),
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("D", 1), new SymbolPair("C", 2), new SymbolPair("G", 1), new SymbolPair("F", 1)), 1, 1)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 0), new SymbolPair("D", 1), new SymbolPair("C", 3), new SymbolPair("G", 1), new SymbolPair("F", 0)), 1, 1),
                 new LabeledSentence(List.of(new SymbolPair("C", 3), new SymbolPair("G", 1), new SymbolPair("F", 0)), 0, 1)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("C", 2), new SymbolPair("G", 0), new SymbolPair("F", 0)), 0, 1),
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 0), new SymbolPair("C", 2), new SymbolPair("G", 0), new SymbolPair("F", 0)), 1, 1)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 0), new SymbolPair("D", 0), new SymbolPair("C", 1), new SymbolPair("G", 1), new SymbolPair("F", 2)), 1, 2),
                 new LabeledSentence(List.of(new SymbolPair("A", 0), new SymbolPair("G", 1), new SymbolPair("C", 1), new SymbolPair("D", 0), new SymbolPair("F", 2)), 0, 2)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("G", 1), new SymbolPair("C", 0), new SymbolPair("D", 1), new SymbolPair("F", 0)), 0, 2),
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 1), new SymbolPair("C", 0), new SymbolPair("G", 1), new SymbolPair("F", 0)), 1, 2)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("D", 0), new SymbolPair("C", 3), new SymbolPair("G", 0), new SymbolPair("F", 3)), 1, 2),
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("G", 0), new SymbolPair("C", 3), new SymbolPair("D", 0), new SymbolPair("F", 3)), 0, 2)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("G", 1), new SymbolPair("C", 2), new SymbolPair("D", 1), new SymbolPair("F", 1)), 0, 2),
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("D", 1), new SymbolPair("C", 2), new SymbolPair("G", 1), new SymbolPair("F", 1)), 1, 2)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("G", 0), new SymbolPair("C", 0), new SymbolPair("D", 1), new SymbolPair("F", 0)), 0, 2),
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("D", 1), new SymbolPair("C", 0), new SymbolPair("G", 0), new SymbolPair("F", 0)), 1, 2)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("D", 0), new SymbolPair("C", 1), new SymbolPair("G", 1), new SymbolPair("F", 3)), 1, 2),
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("G", 1), new SymbolPair("C", 1), new SymbolPair("D", 0), new SymbolPair("F", 3)), 0, 2)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 0), new SymbolPair("D", 0), new SymbolPair("C", 2)), 0, 3),
                 new LabeledSentence(List.of(new SymbolPair("A", 0), new SymbolPair("D", 0), new SymbolPair("C", 2), new SymbolPair("F", 1)), 1, 3)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("C", 1), new SymbolPair("G", 1), new SymbolPair("F", 2)), 1, 3),
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("C", 1), new SymbolPair("G", 1)), 0, 3)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 0), new SymbolPair("C", 0), new SymbolPair("G", 0)), 0, 3),
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 0), new SymbolPair("C", 0), new SymbolPair("G", 0), new SymbolPair("F", 3)), 1, 3)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("D", 1), new SymbolPair("C", 3), new SymbolPair("G", 0), new SymbolPair("F", 0)), 1, 3),
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("D", 1), new SymbolPair("C", 3), new SymbolPair("G", 0)), 0, 3)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 0), new SymbolPair("D", 1), new SymbolPair("C", 3)), 0, 3),
                 new LabeledSentence(List.of(new SymbolPair("A", 0), new SymbolPair("D", 1), new SymbolPair("C", 3), new SymbolPair("F", 2)), 1, 3)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("C", 2), new SymbolPair("G", 0), new SymbolPair("F", 3)), 1, 3),
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("C", 2), new SymbolPair("G", 0)), 0, 3)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("D", 1), new SymbolPair("F", 0)), 0, 4),
                 new LabeledSentence(List.of(new SymbolPair("A", 3), new SymbolPair("D", 1), new SymbolPair("C", 2), new SymbolPair("F", 0)), 1, 4)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("D", 0), new SymbolPair("C", 0), new SymbolPair("F", 2)), 1, 4),
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("D", 0), new SymbolPair("F", 2)), 0, 4)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 0), new SymbolPair("F", 3)), 0, 4),
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 0), new SymbolPair("C", 1), new SymbolPair("F", 3)), 1, 4)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 1), new SymbolPair("C", 3), new SymbolPair("G", 1), new SymbolPair("F", 1)), 1, 4),
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 1), new SymbolPair("F", 1)), 0, 4)
         ));
-        testSentences.add(List.of(
+        testSentences1.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 1), new SymbolPair("F", 2)), 0, 4),
                 new LabeledSentence(List.of(new SymbolPair("A", 1), new SymbolPair("D", 1), new SymbolPair("C", 2), new SymbolPair("G", 1), new SymbolPair("F", 2)), 1, 4)
         ));
-        testSentences.add(List.of(
+        testSentences2.add(List.of(
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("D", 0), new SymbolPair("C", 3), new SymbolPair("G", 0), new SymbolPair("F", 1)), 1, 4),
                 new LabeledSentence(List.of(new SymbolPair("A", 2), new SymbolPair("D", 0), new SymbolPair("F", 1)), 0, 4)
         ));

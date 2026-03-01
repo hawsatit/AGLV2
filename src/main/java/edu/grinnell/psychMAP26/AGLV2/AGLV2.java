@@ -90,6 +90,60 @@ public class AGLV2 {
             }
         }
     }
+    
+    private static String selectImageBank(Scanner scanner) {
+        String[] banks = {"img", "img2"};  // Add more if needed
+
+        while (true) {
+            clearConsole();
+            System.out.println("Select the shape bank for this participant:\n");
+
+            for (int i = 0; i < banks.length; i++) {
+                System.out.println((i + 1) + ") " + banks[i]);
+            }
+
+            System.out.println("\nEnter a number (1-" + banks.length + ") or 'q' to quit:");
+
+            String input = scanner.nextLine().trim();
+
+            if (input.equalsIgnoreCase("q")) {
+                running = false;
+                System.out.println("Exiting...");
+                return null;
+            }
+
+            try {
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= banks.length) {
+                    return banks[choice - 1];
+                }
+            } catch (NumberFormatException ignored) {}
+
+            System.out.println("Invalid selection. Press Enter to try again.");
+            scanner.nextLine();
+        }
+    }
+    
+    private static int getValidatedDayInput(Scanner scanner) {
+        while (true) {
+            clearConsole();
+            System.out.println("Select session day:");
+            System.out.println("1) Day 1 (Learning + TestBank 1)");
+            System.out.println("2) Day 2 (Skip Learning + TestBank 2)");
+            System.out.println("\nEnter 1 or 2 (or 'q' to quit):");
+
+            String input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("q")) {
+                running = false;
+                return -1;
+            }
+            if (input.equals("1") || input.equals("2")) {
+                return Integer.parseInt(input);
+            }
+            System.out.println("Invalid input. Press Enter to try again.");
+            scanner.nextLine();
+        }
+    }
 
     
     //main funtion does not take any initial command line arguements
@@ -97,22 +151,39 @@ public class AGLV2 {
         
         //Scanner to read in user input from the command line
         Scanner scanner = new Scanner(System.in);
+        
+        int day = getValidatedDayInput(scanner);
+        if (!running) return;
+        
+        //set the testGroup based on day
+        int testGroup = (day == 1) ? 1 : 2;  // Day 1 -> bank1, Day 2 -> bank2
+        boolean doLearning = (day == 1);
+        
 
         // Participant setup
         int participantNumber = getValidatedIntegerInput(scanner, "Please enter participant number:");
         int timeOn = getValidatedIntegerInput(scanner, "Please enter the display speed (in milliseconds):");
         
+        //get the image group
+        String group = selectImageBank(scanner);
+        if (!running) return;
+        
 
         clearConsole();
-        System.out.print("Welcome to the experiment! \nIn the first part of the experiment, you will be shown a series of sequences of shapes." + 
-                "\nPlease attend to the presented sequences because you will be tested on your knowledge of them afterwards.");
+        
+        if (doLearning) {
+            System.out.print("Welcome... you will be shown sequences...");
+        } else {
+            System.out.print("Welcome back. You will now complete the second part of the experiment...");
+        }
+        
         scanner.nextLine();
         clearConsole();
+        
         System.out.println("Press Enter to begin...");
         scanner.nextLine(); // wait for Enter key
         
         //constants and panel setup
-        String group = "img";
         int timeBetween = 100;
         int xStart = 675;
         int y = 200;
@@ -123,76 +194,79 @@ public class AGLV2 {
 
 
         SymbolLoader loader = new SymbolLoader(group);
-        SymbolSentenceGenerator generator = new SymbolSentenceGenerator(loader);
+        SymbolSentenceGenerator generator = new SymbolSentenceGenerator(loader, testGroup, doLearning);
         //doubles the sentences (50 * 2) of the same
-        generator.add(loader);
+        //generator.add(loader);
         
         
         //learning phase
         int count = 0;
         
-        //1 sec pause at the start
-        Thread.sleep(1000);
-        
-        //whie the learning queue has information and q is not pressed
-        while (generator.hasNextLearning() && running && count < 3) {
-            count++;
-            
-            //if you want to exit press q
-            if (System.in.available() > 0) {
-                String input = scanner.nextLine();
-                if (input.equalsIgnoreCase("q")) {
+        if (doLearning){
+            //1 sec pause at the start
+            Thread.sleep(1000);
+
+            //whie the learning queue has information and q is not pressed
+            while (generator.hasNextLearning() && running && count < 3) {
+                count++;
+
+                //if you want to exit press q
+                if (System.in.available() > 0) {
+                    String input = scanner.nextLine();
+                    if (input.equalsIgnoreCase("q")) {
+                        running = false;
+                        System.out.println("Exiting...");
+                        break;
+                    }
+                }
+
+
+                List<BufferedImage> sequence = generator.getNextLearning();
+                window.clear();
+                for (BufferedImage img : sequence) {
+                    //scaling the stimuli
+                    int newWidth = img.getWidth() / 2;
+                    int newHeight = img.getHeight() / 2;
+                    g.drawImage(img, xStart, y, newWidth, newHeight, null);
+                    //time on each symbol
+                    Thread.sleep(timeOn);
+                    window.clear(); 
+                    //time between symbols
+                    Thread.sleep(timeBetween);
+                }
+                //time between sentences
+                Thread.sleep(2000);
+            }
+
+
+                    //uses original algorythim to generate a new sentence everytime total of "count" sentences
+            /*
+            int counter = 0;
+            while (running) {
+                window.clear();  // Clear before new sentence
+                List<BufferedImage> sentence = generator.generateSentence();
+                counter++;
+
+                for (BufferedImage img : sentence) {
+                    window.clear();
+                    int newWidth = img.getWidth() / 2;
+                    int newHeight = img.getHeight() / 2;
+                    g.drawImage(img, xStart, y, newWidth, newHeight, null);
+                    Thread.sleep(timeOn);
+                    window.clear(); 
+                    Thread.sleep(timeBetween);
+                }      
+                Thread.sleep(2000); 
+
+                if (counter == 90){
                     running = false;
-                    System.out.println("Exiting...");
-                    break;
                 }
             }
-            
-            
-            List<BufferedImage> sequence = generator.getNextLearning();
-            window.clear();
-            for (BufferedImage img : sequence) {
-                //scaling the stimuli
-                int newWidth = img.getWidth() / 2;
-                int newHeight = img.getHeight() / 2;
-                g.drawImage(img, xStart, y, newWidth, newHeight, null);
-                //time on each symbol
-                Thread.sleep(timeOn);
-                window.clear(); 
-                //time between symbols
-                Thread.sleep(timeBetween);
-            }
-            //time between sentences
-            Thread.sleep(2000);
-        }
-        
-                //uses original algorythim to generate a new sentence everytime total of "count" sentences
-        /*
-        int counter = 0;
-        while (running) {
-            window.clear();  // Clear before new sentence
-            List<BufferedImage> sentence = generator.generateSentence();
-            counter++;
+            */
 
-            for (BufferedImage img : sentence) {
-                window.clear();
-                int newWidth = img.getWidth() / 2;
-                int newHeight = img.getHeight() / 2;
-                g.drawImage(img, xStart, y, newWidth, newHeight, null);
-                Thread.sleep(timeOn);
-                window.clear(); 
-                Thread.sleep(timeBetween);
-            }      
-            Thread.sleep(2000); 
-            
-            if (counter == 90){
-                running = false;
-            }
+            //close panel after learning phase
+            window.close();
         }
-        */
-        
-        //close panel after learning phase
-        window.close();
         
         clearConsole();
         //test phase
@@ -206,9 +280,15 @@ public class AGLV2 {
         scanner.nextLine();
         
         //creates the output file which will be exported to the results folder
-        FileWriter logWriter = new FileWriter("results/participant_" + participantNumber + ".csv");
+        new java.io.File("results").mkdirs(); // make sure folder exists
+
+        FileWriter logWriter = new FileWriter(
+            "results/participant_" + participantNumber + "_day" + day + ".csv"
+        );
         //write the header which is the Participant number, speed, and the column lables
         logWriter.write("Participant," + participantNumber + "\n");
+        logWriter.write("Day," + day + "\n");
+        logWriter.write("TestBank," + testGroup + "\n");
         logWriter.write("Speed (ms)," + timeOn + "\n");
         logWriter.write("Question,Chosen,Correct,CorrectIndex,Violation\n");
 

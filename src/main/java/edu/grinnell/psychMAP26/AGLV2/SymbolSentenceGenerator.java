@@ -1,7 +1,11 @@
 package edu.grinnell.psychMAP26.AGLV2;
 
 import java.awt.image.BufferedImage;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 /**
  * SymbolSentenceGenerator generates symbol sequences for both the learning and test phases.
@@ -12,40 +16,56 @@ public class SymbolSentenceGenerator {
     private final Queue<Pair<List<LabeledSentence>, List<List<BufferedImage>>>> testQueue;
     
     //takes in a SymbolLoader which has the two lists of symbols
-    public SymbolSentenceGenerator(SymbolLoader loader) {
+    public SymbolSentenceGenerator(SymbolLoader loader, int testGroup, boolean loadLearning) {
         this.loader = loader;
         this.sequenceQueue = new LinkedList<>();
         this.testQueue = new LinkedList<>();
-        preloadSequences();
+        preloadSequences(testGroup, loadLearning);
     }
     
+    public SymbolSentenceGenerator(SymbolLoader loader) {
+        this(loader, 1, true); // default: Day 1 behavior
+    }
+    
+    
     //Loads the images into the queues for learning and test phase
-    private void preloadSequences() {
+    private void preloadSequences(int testGroup, boolean loadLearning) {
         PreLoadSentence preload = new PreLoadSentence();
         List<List<SymbolPair>> sentences = preload.sentences;
-        List<List<LabeledSentence>> testSentences = preload.testSentences;
+        List<List<LabeledSentence>> testSentences;
 
-        Collections.shuffle(sentences);
-
-        // Load learning phase sequences
-        for (List<SymbolPair> sentence : sentences) {
-            List<BufferedImage> images = new ArrayList<>();
-            for (SymbolPair p : sentence) {
-                images.add(loader.getFromCategory(p.category, p.index));
-            }
-            sequenceQueue.add(images);
+        if (testGroup == 1) {
+            testSentences = preload.testSentences1;
+        } else {
+            testSentences = preload.testSentences2;
         }
 
-        /** 
-         * 
+        // Only shuffle + load learning sentences if requested (Day 1)
+        if (loadLearning) {
+            Collections.shuffle(sentences);
+
+            // Load learning phase sequences
+            for (List<SymbolPair> sentence : sentences) {
+                List<BufferedImage> images = new ArrayList<>();
+                for (SymbolPair p : sentence) {
+                    images.add(loader.getFromCategory(p.category, p.index));
+                }
+                sequenceQueue.add(images);
+            }
+        }
+
+        /**
+         *
          * Load test phase sentences in pairs (correct + incorrect)
-         * 
+         *
          * Goes through every pair of test sentences (correct + incorrect).
-         * Converts each sentence into a list of images using their symbol components.
-         * Pairs the original sentence objects and their image versions together.
-         * Stores them in testQueue for later use (e.g., displaying them in the experiment).
-         * 
-         * */
+         * Converts each sentence into a list of images using their symbol
+         * components. Pairs the original sentence objects and their image
+         * versions together. Stores them in testQueue for later use (e.g.,
+         * displaying them in the experiment).
+         *
+         *
+         */
         for (List<LabeledSentence> labeledPair : testSentences) {
             List<List<BufferedImage>> imagesList = new ArrayList<>();
             for (LabeledSentence labeled : labeledPair) {
