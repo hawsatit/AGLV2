@@ -268,9 +268,15 @@ public class AGLV2 {
         
         clearConsole();
         //test phase
-        System.out.println("The sequences you just saw were in an unknown language." + '\n' 
+        if (day == 1){
+         System.out.println("The sequences you just saw were in an unknown language." + '\n' 
                 + "In the second part of the experiment, you will be presented with two new sequences, seperated by a pause in between. \n" + 
+                "Then, you will be asked to choose which of the two sequences seems more similar to the unknown language from part 1.");   
+        } else {
+            System.out.println("You will complete the second part of the experiment again, where you will be presented with two new sequences, seperated by a pause in between. \n" + 
                 "Then, you will be asked to choose which of the two sequences seems more similar to the unknown language from part 1.");
+        }
+        
         System.out.println("Please notify your experimenter to continue!");
         scanner.nextLine();
         clearConsole();
