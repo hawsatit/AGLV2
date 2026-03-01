@@ -1,0 +1,50 @@
+biff cav dupp
+hep lum loke
+mib neb jux
+rud sig vot
+biff lum dupp
+hep cav jux
+mib sig loke
+rud neb vot
+biff klor lum dupp
+hep pell neb loke
+mib klor sig jux
+rud pell cav vot
+hep klor sig dupp
+biff pell sig vot
+mib pell lum jux
+rud klor cav loke
+biff cav tiz dupp
+hep lum pilk loke
+mib neb tiz jux
+rud sig pilk vot
+rud neb pilk dupp
+mib lum tiz loke
+biff cav pilk jux
+hep sig tiz vot
+biff klor cav pilk jux
+biff pell sig tiz vot
+rud pell lum tiz dupp
+mib klor lum pilk loke
+mib pell cav tiz jux
+rud klor sig pilk vot
+hep klor neb tiz loke
+rud pell neb pilk dupp
+biff sig dupp cav
+hep cav loke neb
+mib lum jux sig
+rud neb vot lum
+rud cav jux lum
+hep sig loke neb
+mib klor cav vot sig
+rud pell lum loke neb
+hep klor sig dupp lum
+biff pell neb jux cav
+biff cav tiz jux lum
+hep lum pilk vot sig
+mib sig pilk dupp cav
+rud neb tiz loke lum
+biff neb jux lum tiz
+hep cav loke neb pilk
+mib sig dupp cav pilk
+rud lum vot sig tiz

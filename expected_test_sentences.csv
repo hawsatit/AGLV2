@@ -1,0 +1,48 @@
+biff klor sig pilk jux,1,0
+sig pilk jux,0,1
+lum tiz dupp,0,1
+hep pell lum tiz dupp,1,0
+mib klor cav tiz vot,1,0
+cav tiz vot,0,1
+neb pilk loke,0,1
+rud pell neb pilk loke,1,0
+biff pell sig pilk dupp,1,0
+sig pilk dupp,0,1
+neb tiz dupp,0,1
+hep klor neb tiz dupp,1,0
+biff klor lum pilk jux,1,0
+biff pilk lum klor jux,0,2
+hep pilk cav pell dupp,0,2
+hep pell cav pilk dupp,1,0
+mib klor sig tiz vot,1,0
+mib tiz sig klor vot,0,2
+rud pilk neb pell loke,0,2
+rud pell neb pilk loke,1,0
+mib tiz cav pell dupp,0,2
+mib pell cav tiz dupp,1,0
+rud klor lum pilk vot,1,0
+rud pilk lum klor vot,0,2
+biff klor neb,0,3
+biff klor neb loke,1,0
+mib lum pilk jux,1,0
+mib lum pilk,0,3
+hep klor cav tiz,0,3
+hep klor cav tiz vot,1,0
+rud pell sig tiz dupp,1,0
+rud pell sig tiz,0,3
+biff pell sig,0,3
+biff pell sig jux,1,0
+hep neb tiz vot,1,0
+hep neb tiz,0,3
+rud pell dupp,0,4
+rud pell neb dupp,1,0
+mib klor cav jux,1,0
+mib klor jux,0,4
+hep klor vot,0,4
+hep klor lum vot,1,0
+hep pell sig pilk loke,1,0
+hep pell loke,0,4
+hep pell jux,0,4
+hep pell neb pilk jux,1,0
+mib klor sig tiz loke,1,0
+mib klor loke,0,4
