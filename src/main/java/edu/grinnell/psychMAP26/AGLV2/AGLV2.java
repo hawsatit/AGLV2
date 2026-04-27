@@ -162,7 +162,7 @@ public class AGLV2 {
 
         // Participant setup
         int participantNumber = getValidatedIntegerInput(scanner, "Please enter participant number:");
-        int timeOn = getValidatedIntegerInput(scanner, "Please enter the display speed (in milliseconds):");
+        int timeBetween = getValidatedIntegerInput(scanner, "Please enter inter-stimulus speed (in milliseconds):");
         
         //get the image group
         String group = selectImageBank(scanner);
@@ -182,7 +182,7 @@ public class AGLV2 {
         scanner.nextLine(); // wait for Enter key
         
         //constants and panel setup
-        int timeBetween = 100;
+        int timeOn = 500;
         int xStart = 675;
         int y = 200;
 
@@ -203,7 +203,7 @@ public class AGLV2 {
             Thread.sleep(1000);
 
             //whie the learning queue has information and q is not pressed
-            while (generator.hasNextLearning() && running && count < 3) {
+            while (generator.hasNextLearning() && running) {
                 count++;
 
                 //if you want to exit press q
@@ -252,7 +252,7 @@ public class AGLV2 {
                     window.clear(); 
                     Thread.sleep(timeBetween);
                 }      
-                Thread.sleep(2000); 
+                Thread.sleep(2000);
 
                 if (counter == 90){
                     running = false;
@@ -285,7 +285,7 @@ public class AGLV2 {
         new java.io.File("results").mkdirs(); // make sure folder exists
 
         FileWriter logWriter = new FileWriter(
-            "results/participant_" + participantNumber + "_day" + day + ".csv"
+            "results/participant_" + participantNumber + ".csv"
         );
         //write the header which is the Participant number, speed, and the column lables
         logWriter.write("Participant," + participantNumber + "\n");
@@ -298,7 +298,7 @@ public class AGLV2 {
         
         int count2 = 0;
         //whie the test queue has information and q is not pressed
-        while (generator.hasNextTest() && running && count2 < 3) {
+        while (generator.hasNextTest() && running) {
             
             count2++;
                         
@@ -371,4 +371,3 @@ public class AGLV2 {
         System.exit(0);
     }
 }
-
